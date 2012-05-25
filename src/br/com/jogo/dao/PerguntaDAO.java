@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
 public class PerguntaDAO {
 
     public void salvarPergunta(Pergunta pergunta) {
-        
+
         EntityManager em = PersistenceUtil.getUtil().obter().createEntityManager();
 
         em.getTransaction().begin();

@@ -6,6 +6,7 @@ package br.com.jogo.negocio;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
@@ -16,18 +17,20 @@ import javax.persistence.Id;
 public class Pergunta implements Serializable {
 
     @Id
-    private Long id;
+    @GeneratedValue
+    private Integer id;
     private String pergunta;
+    private String resposta;
     private String respostaA;
     private String respostaB;
     private String respostaC;
     private String respostaD;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -37,6 +40,14 @@ public class Pergunta implements Serializable {
 
     public void setPergunta(String pergunta) {
         this.pergunta = pergunta;
+    }
+
+    public String getResposta() {
+        return resposta;
+    }
+
+    public void setResposta(String resposta) {
+        this.resposta = resposta;
     }
 
     public String getRespostaA() {
