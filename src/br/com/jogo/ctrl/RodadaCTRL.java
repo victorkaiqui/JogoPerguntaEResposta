@@ -11,7 +11,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Random;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,9 +19,11 @@ import javax.swing.JOptionPane;
 public class RodadaCTRL implements ActionListener {
 
     private RodadaVIEW view;
+    private Pergunta p;
 
     public RodadaCTRL(RodadaVIEW view) {
         this.view = view;
+        carregarPergunta();
     }
 
     @Override
@@ -30,41 +31,43 @@ public class RodadaCTRL implements ActionListener {
 
         verificaSelecionado(e);
 
-
         if (e.getSource() == view.getProximoButton()) {
-            carregar();
+            verificaResposta(p);
+            carregarPergunta();
         }
 
     }
 
-    public void carregar() {
-        
+    public void carregarPergunta() {
+
         List<Pergunta> perguntas = new PerguntaDAO().selecionarPergunta();
 
         Random r = new Random();
 
         int perguntaRandom = r.nextInt(perguntas.size());
 
-        Pergunta p = perguntas.get(perguntaRandom);
-
+        p = perguntas.get(perguntaRandom);
         view.getPerguntaTextPane().setText(p.getPergunta());
         view.getRespostaATextField().setText(p.getRespostaA());
         view.getRespostaBTextField().setText(p.getRespostaB());
         view.getRespostaCTextField().setText(p.getRespostaC());
         view.getRespostaDTextField().setText(p.getRespostaD());
-        
-      if(p.getResposta().equals("A") && view.getAlternativaCertaARadioButton().isSelected()){
-          JOptionPane.showConfirmDialog(view, "A");
-      }
-      if(p.getResposta().equals("B") && view.getAlternativaCertaBRadioButton().isSelected()){
-          JOptionPane.showConfirmDialog(view, "B");
-      }
-      if(p.getResposta().equals("C") && view.getAlternativaCertaCRadioButton().isSelected()){
-          JOptionPane.showConfirmDialog(view, "C");
-      }
-      if(p.getResposta().equals("D") && view.getAlternativaCertaDRadioButton().isSelected()){
-          JOptionPane.showConfirmDialog(view, "D");;
-      }
+
+    }
+
+    public void verificaResposta(Pergunta p) {
+
+        if (p.getResposta().equals("A") && view.getAlternativaCertaARadioButton().isSelected()) {
+            System.out.println("A");
+        }
+        if (p.getResposta().equals("B") && view.getAlternativaCertaBRadioButton().isSelected()) {
+            System.out.println("B");
+        }
+        if (p.getResposta().equals("C") && view.getAlternativaCertaCRadioButton().isSelected()) {
+        }
+        if (p.getResposta().equals("D") && view.getAlternativaCertaDRadioButton().isSelected()) {
+        }
+
     }
 
     public void verificaSelecionado(ActionEvent e) {
