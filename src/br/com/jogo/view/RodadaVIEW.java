@@ -5,6 +5,8 @@
 package br.com.jogo.view;
 
 import br.com.jogo.ctrl.RodadaCTRL;
+import br.com.jogo.negocio.Jogador;
+import java.util.List;
 import javax.swing.*;
 
 /**
@@ -18,7 +20,7 @@ public class RodadaVIEW extends javax.swing.JDialog {
      */
     private RodadaCTRL controle;
 
-    public RodadaVIEW(java.awt.Frame parent, boolean modal) {
+    public RodadaVIEW(java.awt.Frame parent, boolean modal, List<Jogador> jogadores) {
         super(parent, modal);
         initComponents();
 
@@ -28,7 +30,7 @@ public class RodadaVIEW extends javax.swing.JDialog {
         respostaCTextField.setEditable(false);
         respostaDTextField.setEditable(false);
 
-        controle = new RodadaCTRL(this);
+        controle = new RodadaCTRL(this, jogadores);
         alternativaCertaARadioButton.addActionListener(controle);
         alternativaCertaBRadioButton.addActionListener(controle);
         alternativaCertaCRadioButton.addActionListener(controle);

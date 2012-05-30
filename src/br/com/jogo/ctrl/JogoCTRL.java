@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JCheckBox;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -27,28 +29,47 @@ public class JogoCTRL implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource() instanceof JRadioButton) {
+            verificaJogadores(e);
+        }
 
-        verificaJogadores(e);
-        contaJogadores(e);
-        
         if (e.getSource() == view.getJogarButton()) {
+            contaJogadores(e);
 
-            RodadaVIEW r = new RodadaVIEW(view, true);
+            RodadaVIEW r = new RodadaVIEW(view, true, jogadores);
             r.setVisible(true);
 
         }
 
     }
 
+    public void atualizaPlacar() {
+        for (Jogador j : jogadores) {
+            if (j.getId() == 1) {
+                view.getPlacarJogador1Label().setText(String.valueOf(j.getPlacar()));
+            }
+            if (j.getId() == 2) {
+                view.getPlacarJogador2Label().setText(String.valueOf(j.getPlacar()));
+            }
+            if (j.getId() == 3) {
+                view.getPlacarJogador3Label().setText(String.valueOf(j.getPlacar()));
+            }
+            if (j.getId() == 4) {
+                view.getPlacarJogador4Label().setText(String.valueOf(j.getPlacar()));
+            }
+        }
+    }
+
     public void contaJogadores(ActionEvent e) {
 
         if (view.getJogador1RadioButton().isSelected()) {
-
             Jogador j1 = new Jogador();
             j1.setId(1);
             j1.setNome(view.getJogador1TextField().getText());
             j1.setPlacar(0);
-            jogadores.add(j1);
+            if (!jogadores.contains(j1)) {
+                jogadores.add(j1);
+            }
 
         }
         if (view.getJogador2RadioButton().isSelected()) {
@@ -57,7 +78,9 @@ public class JogoCTRL implements ActionListener {
             j2.setId(2);
             j2.setNome(view.getJogador2TextField().getText());
             j2.setPlacar(0);
-            jogadores.add(j2);
+            if (!jogadores.contains(j2)) {
+                jogadores.add(j2);
+            }
 
         }
         if (view.getJogador3RadioButton().isSelected()) {
@@ -66,7 +89,9 @@ public class JogoCTRL implements ActionListener {
             j3.setId(3);
             j3.setNome(view.getJogador3TextField().getText());
             j3.setPlacar(0);
-            jogadores.add(j3);
+            if (!jogadores.contains(j3)) {
+                jogadores.add(j3);
+            }
 
         }
         if (view.getJogador4RadioButton().isSelected()) {
@@ -75,7 +100,9 @@ public class JogoCTRL implements ActionListener {
             j4.setId(4);
             j4.setNome(view.getJogador4TextField().getText());
             j4.setPlacar(0);
-            jogadores.add(j4);
+            if (!jogadores.contains(j4)) {
+                jogadores.add(j4);
+            }
 
         }
     }

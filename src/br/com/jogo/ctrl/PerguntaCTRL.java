@@ -28,7 +28,7 @@ public class PerguntaCTRL implements ActionListener {
         if (e.getSource() == view.getSalvarButton()) {
             salvarPegunta();
         }
-        
+
     }
 
     public void salvarPegunta() {

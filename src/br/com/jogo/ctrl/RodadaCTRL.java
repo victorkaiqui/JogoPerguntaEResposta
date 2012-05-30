@@ -5,7 +5,9 @@
 package br.com.jogo.ctrl;
 
 import br.com.jogo.dao.PerguntaDAO;
+import br.com.jogo.negocio.Jogador;
 import br.com.jogo.negocio.Pergunta;
+import br.com.jogo.view.JogoVIEW;
 import br.com.jogo.view.RodadaVIEW;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,10 +22,14 @@ public class RodadaCTRL implements ActionListener {
 
     private RodadaVIEW view;
     private Pergunta p;
-    private int rodada = 1;
+    private int proximoJogador = 1;
+    private int rodada;
+    private List<Jogador> jogadores;
+    private Jogador jogadorAtual;
 
-    public RodadaCTRL(RodadaVIEW view) {
+    public RodadaCTRL(RodadaVIEW view, List<Jogador> jogadores) {
         this.view = view;
+        this.jogadores = jogadores;
         carregarPergunta();
     }
 
@@ -47,6 +53,9 @@ public class RodadaCTRL implements ActionListener {
 
         int perguntaRandom = r.nextInt(perguntas.size());
 
+        jogadorAtual = proximoJogador();
+        view.setTitle(jogadorAtual.getNome());
+
         p = perguntas.get(perguntaRandom);
         view.getPerguntaTextPane().setText(p.getPergunta());
         view.getRespostaATextField().setText(p.getRespostaA());
@@ -56,18 +65,32 @@ public class RodadaCTRL implements ActionListener {
 
     }
 
+    private Jogador proximoJogador() {
+        if (proximoJogador > jogadores.size()) {
+            proximoJogador = 1;
+        }
+        return jogadores.get(proximoJogador++ - 1);
+
+    }
+
     public void verificaResposta(Pergunta p) {
 
         if (p.getResposta().equals("A") && view.getAlternativaCertaARadioButton().isSelected()) {
             System.out.println("A");
+            jogadorAtual.incrementaPlacar();
         }
         if (p.getResposta().equals("B") && view.getAlternativaCertaBRadioButton().isSelected()) {
             System.out.println("B");
+            jogadorAtual.incrementaPlacar();
         }
         if (p.getResposta().equals("C") && view.getAlternativaCertaCRadioButton().isSelected()) {
+            jogadorAtual.incrementaPlacar();
         }
         if (p.getResposta().equals("D") && view.getAlternativaCertaDRadioButton().isSelected()) {
+            jogadorAtual.incrementaPlacar();
         }
+        JogoVIEW parent = (JogoVIEW) view.getParent();
+        parent.getControle().atualizaPlacar();
 
     }
 
@@ -94,5 +117,9 @@ public class RodadaCTRL implements ActionListener {
             view.getAlternativaCertaCRadioButton().setSelected(false);
         }
 
+    }
+
+    public void setJogadores(List<Jogador> jogadores) {
+        this.jogadores = jogadores;
     }
 }
