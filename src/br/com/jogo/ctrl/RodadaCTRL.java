@@ -20,6 +20,7 @@ public class RodadaCTRL implements ActionListener {
 
     private RodadaVIEW view;
     private Pergunta p;
+    private int rodada = 1;
 
     public RodadaCTRL(RodadaVIEW view) {
         this.view = view;

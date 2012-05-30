@@ -4,10 +4,13 @@
  */
 package br.com.jogo.ctrl;
 
+import br.com.jogo.negocio.Jogador;
 import br.com.jogo.view.JogoVIEW;
 import br.com.jogo.view.RodadaVIEW;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -15,7 +18,8 @@ import java.awt.event.ActionListener;
  */
 public class JogoCTRL implements ActionListener {
 
-    JogoVIEW view;
+    private JogoVIEW view;
+    private List<Jogador> jogadores = new ArrayList<Jogador>();
 
     public JogoCTRL(JogoVIEW view) {
         this.view = view;
@@ -25,7 +29,8 @@ public class JogoCTRL implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         verificaJogadores(e);
-
+        contaJogadores(e);
+        
         if (e.getSource() == view.getJogarButton()) {
 
             RodadaVIEW r = new RodadaVIEW(view, true);
@@ -33,6 +38,46 @@ public class JogoCTRL implements ActionListener {
 
         }
 
+    }
+
+    public void contaJogadores(ActionEvent e) {
+
+        if (view.getJogador1RadioButton().isSelected()) {
+
+            Jogador j1 = new Jogador();
+            j1.setId(1);
+            j1.setNome(view.getJogador1TextField().getText());
+            j1.setPlacar(0);
+            jogadores.add(j1);
+
+        }
+        if (view.getJogador2RadioButton().isSelected()) {
+
+            Jogador j2 = new Jogador();
+            j2.setId(2);
+            j2.setNome(view.getJogador2TextField().getText());
+            j2.setPlacar(0);
+            jogadores.add(j2);
+
+        }
+        if (view.getJogador3RadioButton().isSelected()) {
+
+            Jogador j3 = new Jogador();
+            j3.setId(3);
+            j3.setNome(view.getJogador3TextField().getText());
+            j3.setPlacar(0);
+            jogadores.add(j3);
+
+        }
+        if (view.getJogador4RadioButton().isSelected()) {
+
+            Jogador j4 = new Jogador();
+            j4.setId(4);
+            j4.setNome(view.getJogador4TextField().getText());
+            j4.setPlacar(0);
+            jogadores.add(j4);
+
+        }
     }
 
     public void verificaJogadores(ActionEvent e) {

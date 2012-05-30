@@ -20,19 +20,19 @@ public class JogoVIEW extends javax.swing.JFrame {
 
     public JogoVIEW() {
         initComponents();
-        
+
         controle = new JogoCTRL(this);
-        
+
         jogador1TextField.setEnabled(false);
         jogador2TextField.setEnabled(false);
         jogador3TextField.setEnabled(false);
         jogador4TextField.setEnabled(false);
-        
+
         jogador1RadioButton.addActionListener(controle);
         jogador2RadioButton.addActionListener(controle);
         jogador3RadioButton.addActionListener(controle);
         jogador4RadioButton.addActionListener(controle);
-        
+
         jogarButton.addActionListener(controle);
     }
 
@@ -220,151 +220,151 @@ public class JogoVIEW extends javax.swing.JFrame {
     public JogoCTRL getControle() {
         return controle;
     }
-    
+
     public void setControle(JogoCTRL controle) {
         this.controle = controle;
     }
-    
+
     public JPanel getjPanel1() {
         return jPanel1;
     }
-    
+
     public void setjPanel1(JPanel jPanel1) {
         this.jPanel1 = jPanel1;
     }
-    
+
     public JRadioButton getJogador1RadioButton() {
         return jogador1RadioButton;
     }
-    
+
     public void setJogador1RadioButton(JRadioButton jogador1RadioButton) {
         this.jogador1RadioButton = jogador1RadioButton;
     }
-    
+
     public JTextField getJogador1TextField() {
         return jogador1TextField;
     }
-    
+
     public void setJogador1TextField(JTextField jogador1TextField) {
         this.jogador1TextField = jogador1TextField;
     }
-    
+
     public JRadioButton getJogador2RadioButton() {
         return jogador2RadioButton;
     }
-    
+
     public void setJogador2RadioButton(JRadioButton jogador2RadioButton) {
         this.jogador2RadioButton = jogador2RadioButton;
     }
-    
+
     public JTextField getJogador2TextField() {
         return jogador2TextField;
     }
-    
+
     public void setJogador2TextField(JTextField jogador2TextField) {
         this.jogador2TextField = jogador2TextField;
     }
-    
+
     public JRadioButton getJogador3RadioButton() {
         return jogador3RadioButton;
     }
-    
+
     public void setJogador3RadioButton(JRadioButton jogador3RadioButton) {
         this.jogador3RadioButton = jogador3RadioButton;
     }
-    
+
     public JTextField getJogador3TextField() {
         return jogador3TextField;
     }
-    
+
     public void setJogador3TextField(JTextField jogador3TextField) {
         this.jogador3TextField = jogador3TextField;
     }
-    
+
     public JRadioButton getJogador4RadioButton() {
         return jogador4RadioButton;
     }
-    
+
     public void setJogador4RadioButton(JRadioButton jogador4RadioButton) {
         this.jogador4RadioButton = jogador4RadioButton;
     }
-    
+
     public JTextField getJogador4TextField() {
         return jogador4TextField;
     }
-    
+
     public void setJogador4TextField(JTextField jogador4TextField) {
         this.jogador4TextField = jogador4TextField;
     }
-    
+
     public JButton getJogarButton() {
         return jogarButton;
     }
-    
+
     public void setJogarButton(JButton jogarButton) {
         this.jogarButton = jogarButton;
     }
-    
+
     public JLabel getNomeJogadorLabel() {
         return nomeJogadorLabel;
     }
-    
+
     public void setNomeJogadorLabel(JLabel nomeJogadorLabel) {
         this.nomeJogadorLabel = nomeJogadorLabel;
     }
-    
+
     public JLabel getPlacarJogador1Label() {
         return placarJogador1Label;
     }
-    
+
     public void setPlacarJogador1Label(JLabel placarJogador1Label) {
         this.placarJogador1Label = placarJogador1Label;
     }
-    
+
     public JLabel getPlacarJogador2Label() {
         return placarJogador2Label;
     }
-    
+
     public void setPlacarJogador2Label(JLabel placarJogador2Label) {
         this.placarJogador2Label = placarJogador2Label;
     }
-    
+
     public JLabel getPlacarJogador3Label() {
         return placarJogador3Label;
     }
-    
+
     public void setPlacarJogador3Label(JLabel placarJogador3Label) {
         this.placarJogador3Label = placarJogador3Label;
     }
-    
+
     public JLabel getPlacarJogador4Label() {
         return placarJogador4Label;
     }
-    
+
     public void setPlacarJogador4Label(JLabel placarJogador4Label) {
         this.placarJogador4Label = placarJogador4Label;
     }
-    
+
     public JLabel getPlacarLabel() {
         return placarLabel;
     }
-    
+
     public void setPlacarLabel(JLabel placarLabel) {
         this.placarLabel = placarLabel;
     }
-    
+
     public JLabel getQtdRodadasLabel() {
         return qtdRodadasLabel;
     }
-    
+
     public void setQtdRodadasLabel(JLabel qtdRodadasLabel) {
         this.qtdRodadasLabel = qtdRodadasLabel;
     }
-    
+
     public JTextField getQtdRodadasTextField() {
         return qtdRodadasTextField;
     }
-    
+
     public void setQtdRodadasTextField(JTextField qtdRodadasTextField) {
         this.qtdRodadasTextField = qtdRodadasTextField;
     }
