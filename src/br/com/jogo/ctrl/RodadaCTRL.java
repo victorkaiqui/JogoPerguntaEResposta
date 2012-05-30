@@ -6,60 +6,69 @@ package br.com.jogo.ctrl;
 
 import br.com.jogo.dao.PerguntaDAO;
 import br.com.jogo.negocio.Pergunta;
-import br.com.jogo.view.PerguntaVIEW;
+import br.com.jogo.view.RodadaVIEW;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Random;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author VictorKaiqui
  */
-public class PerguntaCTRL implements ActionListener {
+public class RodadaCTRL implements ActionListener {
 
-    private PerguntaVIEW view;
+    private RodadaVIEW view;
 
-    public PerguntaCTRL(PerguntaVIEW view) {
+    public RodadaCTRL(RodadaVIEW view) {
         this.view = view;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         verificaSelecionado(e);
-        if (e.getSource() == view.getSalvarButton()) {
-            salvarPegunta();
+
+
+        if (e.getSource() == view.getProximoButton()) {
+            carregar();
         }
-        
+
     }
 
-    public void salvarPegunta() {
+    public void carregar() {
+        
+        List<Pergunta> perguntas = new PerguntaDAO().selecionarPergunta();
 
-        Pergunta p = new Pergunta();
+        Random r = new Random();
 
-        p.setPergunta(view.getPerguntaTextPane().getText());
-        p.setRespostaA(view.getRespostaATextField().getText());
-        p.setRespostaB(view.getRespostaBTextField().getText());
-        p.setRespostaC(view.getRespostaCTextField().getText());
-        p.setRespostaD(view.getRespostaDTextField().getText());
+        int perguntaRandom = r.nextInt(perguntas.size());
 
-        if (view.getAlternativaCertaARadioButton().isSelected()) {
-            p.setResposta("A");
-        }
-        if (view.getAlternativaCertaBRadioButton().isSelected()) {
-            p.setResposta("B");
-        }
-        if (view.getAlternativaCertaCRadioButton().isSelected()) {
-            p.setResposta("C");
-        }
-        if (view.getAlternativaCertaDRadioButton().isSelected()) {
-            p.setResposta("D");
-        }
+        Pergunta p = perguntas.get(perguntaRandom);
 
-        PerguntaDAO pDao = new PerguntaDAO();
-        pDao.salvarPergunta(p);
-
+        view.getPerguntaTextPane().setText(p.getPergunta());
+        view.getRespostaATextField().setText(p.getRespostaA());
+        view.getRespostaBTextField().setText(p.getRespostaB());
+        view.getRespostaCTextField().setText(p.getRespostaC());
+        view.getRespostaDTextField().setText(p.getRespostaD());
+        
+      if(p.getResposta().equals("A") && view.getAlternativaCertaARadioButton().isSelected()){
+          JOptionPane.showConfirmDialog(view, "A");
+      }
+      if(p.getResposta().equals("B") && view.getAlternativaCertaBRadioButton().isSelected()){
+          JOptionPane.showConfirmDialog(view, "B");
+      }
+      if(p.getResposta().equals("C") && view.getAlternativaCertaCRadioButton().isSelected()){
+          JOptionPane.showConfirmDialog(view, "C");
+      }
+      if(p.getResposta().equals("D") && view.getAlternativaCertaDRadioButton().isSelected()){
+          JOptionPane.showConfirmDialog(view, "D");;
+      }
     }
 
     public void verificaSelecionado(ActionEvent e) {
+
         if (e.getSource() == view.getAlternativaCertaARadioButton()) {
             view.getAlternativaCertaBRadioButton().setSelected(false);
             view.getAlternativaCertaCRadioButton().setSelected(false);

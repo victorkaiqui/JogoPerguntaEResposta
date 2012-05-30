@@ -5,6 +5,7 @@
 package br.com.jogo.ctrl;
 
 import br.com.jogo.view.JogoVIEW;
+import br.com.jogo.view.RodadaVIEW;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,7 +23,15 @@ public class JogoCTRL implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         verificaJogadores(e);
+
+        if (e.getSource() == view.getJogarButton()) {
+
+            RodadaVIEW r = new RodadaVIEW(view, true);
+            r.setVisible(true);
+
+        }
 
     }
 
